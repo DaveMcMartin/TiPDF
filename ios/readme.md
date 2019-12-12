@@ -4,20 +4,20 @@ Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast
 
 # Installing
 
-1. Download this project and open the .zip file in /build folder, then copy it's content to your project in the correct folder structure. The path will look like the following: `modules/iphone/br.com.grupow2abrasil.pdfgenerator/2.3.0`
+1. Download this project and open the .zip file in /ios/dist folder, then copy it's content to your project in the correct folder structure. The path will look like the following: `modules/iphone/net.davidmartins.tipdf/2.3.1`
 2. Open Studio, and the `tiapp.xml` file for the project in question.
 3. Switch to the `tiapp.xml` tab.
-4. In the application's `tiapp.xml`, find the `<modules/>` node, and replace it with the new `<modules>` content. If you already have modules, just add a new node for the PDF Generator module. Note that the "version" and "platform" attributes are optional. When "version" is not specified, the latest version of the module will be used (as of Titanium SDK 2.0.0).
+4. In the application's `tiapp.xml`, find the `<modules/>` node, and replace it with the new `<modules>` content. If you already have modules, just add a new node for the Ti PDF module. Note that the "version" and "platform" attributes are optional. When "version" is not specified, the latest version of the module will be used (as of Titanium SDK 2.0.0).
 ```xml
 <modules>
-    <module version="2.3.0" platform="iphone">br.com.grupow2abrasil.pdfgenerator</module>
+    <module version="2.3.1" platform="iphone">net.davidmartins.tipdf</module>
 </modules>
 ```
 5. Use the require function to load the module in the app's code, for example:
 ```javascript
-var pdfGenerator = require('br.com.grupow2abrasil.pdfgenerator');
+var pdfGenerator = require('net.davidmartins.tipdf').createPDF();
 ```
-6. The next time the app is launched or built, PDF Generator should be included with the application.
+6. The next time the app is launched or built, Ti PDF should be included with the application.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ var pdfGenerator = require('br.com.grupow2abrasil.pdfgenerator');
 First of all, load the module.
 
 ```javascript
-var pdfGenerator = require('br.com.grupow2abrasil.pdfgenerator');
+var pdfGenerator = require('net.davidmartins.tipdf').createPDF();
 ```
 
 Then set the properties of your PDF and start drawing. To save call the savePDF function.
@@ -92,7 +92,10 @@ Deletes a page from the PDF.
 
 ### forEachPage(fnc`*`)
 ```javascript
-pdfGenerator.forEachPage(function(pageIndex, total){
+pdfGenerator.forEachPage(function(e){
+    var pageIndex = e.page;
+    var total = e.total;
+    
     // Drawing functions here, you can draw the header and footer, example:
     pdfGenerator.drawText("Page " + pageIndex + " of " + total, 20, 700, 572, 30);
 
@@ -103,7 +106,7 @@ Executes a function for each page of the PDF where you can draw into.
 
 | Name | Type | Description |
 | --- |:---:| --- |
-| fnc | `Function` | Function which will be executed for each page receiving the parameters index and total, both `Number`s |
+| fnc | `Function` | Function which will be executed for each page receiving an object with the parameters index and total, both `Number`s |
 
 ### setTextColor(R`*`, G`*`, B`*`, A)
 ```javascript
@@ -323,7 +326,7 @@ Draws an ellipse.
 
 ### addURL(url`*`, x`*`, y`*`, width`*`, height`*`)
 ```javascript
-pdfGenerator.addURL("http://grupow2abrasil.com.br/", 20, 620, 572, 30);
+pdfGenerator.addURL("https://davidmartins.net/", 20, 620, 572, 30);
 ```
 Adds a clickable area into a rectangle which opens a link on click.
 
@@ -355,8 +358,8 @@ Saves the PDF file, calling callback when the file is ready.
 
 ### generateFromJSON(json`*`, callback`*`)
 ```javascript
-var pageHeight = pdfGenerator.getPageHeight();
-var pageWidth = pdfGenerator.getPageWidth();
+var pageHeight = pdfGenerator.pageHeight;
+var pageWidth = pdfGenerator.pageWidth;
 
 pdfGenerator.generateFromJSON([
         {
@@ -409,7 +412,10 @@ pdfGenerator.generateFromJSON([
         },
         {
             action: "forEachPage",
-            args: [function(index, total) {
+            args: [function(e) {
+                var index = e.page;
+                var total = e.total;
+                
                 pdfGenerator.drawText("by Dave McMartin", 7, pageHeight - 15, 200, 10);
                 pdfGenerator.addURL("https://davidmartins.net/", 7, pageHeight - 15, 200, 10);
                 
@@ -471,11 +477,11 @@ Returns `Number` - Number of pages.
 
 ## Examples
 
-The follwing example illustrates the usage of PDF Generator with multiple over-the-bridge calls.
+The follwing example illustrates the usage of Ti PDF with multiple over-the-bridge calls.
 
 ```javascript
 var docViewer = Ti.UI.iOS.createDocumentViewer();
-var pdfGenerator = require("br.com.grupow2abrasil.pdfgenerator");
+var pdfGenerator = require("net.davidmartins.tipdf").createPDF();
 
 // The PDF name doesn't need extension .pdf, only the name
 // setProperties only works if used before everything else
@@ -527,11 +533,11 @@ pdfGenerator.savePDF(function(e){
 });
 ```
 
-The follwing example illustrates the usage of PDF Generator with JSON.
+The follwing example illustrates the usage of Ti PDF with JSON.
 
 ```javascript
 var docViewer = Ti.UI.iOS.createDocumentViewer();
-var pdfGenerator = require("br.com.grupow2abrasil.pdfgenerator");
+var pdfGenerator = require("net.davidmartins.tipdf").createPDF();
 
 var json = [
     // The PDF name doesn't need extension .pdf, only the name
@@ -602,7 +608,9 @@ var json = [
     },
     {
         action: "forEachPage",
-        args: [function(pageIndex, total){
+        args: [function(e){
+            var pageIndex = e.page;
+            var total = e.total;
             // Drawing functions here, you can draw the header and footer, example:
             pdfGenerator.drawText("Page " + pageIndex + " of " + total, 20, 700, 572, 30);
         }]
@@ -630,7 +638,7 @@ Happy Coding!
 
 # License
 
-PDF Generator is licensed under MIT.
+Ti PDF is licensed under MIT.
 
 ```
  Copyright (c) 2018-2019 Dave McMartin

@@ -7,7 +7,7 @@ Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast
 1. Download this project and open the .zip file in /ios/dist folder, then copy it's content to your project in the correct folder structure. The path will look like the following: `modules/iphone/net.davidmartins.tipdf/2.3.1`
 2. Open Studio, and the `tiapp.xml` file for the project in question.
 3. Switch to the `tiapp.xml` tab.
-4. In the application's `tiapp.xml`, find the `<modules/>` node, and replace it with the new `<modules>` content. If you already have modules, just add a new node for the PDF Generator module. Note that the "version" and "platform" attributes are optional. When "version" is not specified, the latest version of the module will be used (as of Titanium SDK 2.0.0).
+4. In the application's `tiapp.xml`, find the `<modules/>` node, and replace it with the new `<modules>` content. If you already have modules, just add a new node for the Ti PDF module. Note that the "version" and "platform" attributes are optional. When "version" is not specified, the latest version of the module will be used (as of Titanium SDK 2.0.0).
 ```xml
 <modules>
 	<module version="2.3.1" platform="iphone">net.davidmartins.tipdf</module>
@@ -17,7 +17,7 @@ Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast
 ```javascript
 var pdfGenerator = require('net.davidmartins.tipdf').createPDF();
 ```
-6. The next time the app is launched or built, PDF Generator should be included with the application.
+6. The next time the app is launched or built, Ti PDF should be included with the application.
 
 ## Prerequisites
 
@@ -477,7 +477,7 @@ Returns `Number` - Number of pages.
 
 ## Examples
 
-The follwing example illustrates the usage of PDF Generator with multiple over-the-bridge calls.
+The follwing example illustrates the usage of Ti PDF with multiple over-the-bridge calls.
 
 ```javascript
 var docViewer = Ti.UI.iOS.createDocumentViewer();
@@ -533,7 +533,7 @@ pdfGenerator.savePDF(function(e){
 });
 ```
 
-The follwing example illustrates the usage of PDF Generator with JSON.
+The follwing example illustrates the usage of Ti PDF with JSON.
 
 ```javascript
 var docViewer = Ti.UI.iOS.createDocumentViewer();
@@ -638,7 +638,7 @@ Happy Coding!
 
 # License
 
-PDF Generator is licensed under MIT.
+Ti PDF is licensed under MIT.
 
 ```
  Copyright (c) 2018-2019 Dave McMartin
