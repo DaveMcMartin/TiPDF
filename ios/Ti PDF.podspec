@@ -2,21 +2,21 @@
 Pod::Spec.new do |s|
 
     s.name         = "Ti PDF"
-    s.version      = "1.0.0"
-    s.summary      = "The Ti PDF Titanium module."
+    s.version      = "2.3.1"
+    s.summary      = "Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast rendering and good quality."
   
     s.description  = <<-DESC
                      The Ti PDF Titanium module.
                      DESC
   
-   s.homepage     = "https://example.com"
-    s.license      = { :type => "Apache 2", :file => "LICENSE" }
-    s.author       = 'Author'
+    s.homepage     = "https://example.com"
+    s.license      = { :type => "MIT", :file => "LICENSE" }
+    s.author       = 'Dave McMartin'
   
     s.platform     = :ios
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
   
-    s.source       = { :git => "https://github.com/<organization>/<repository>.git" }
+    s.source       = { :git => "https://github.com/DaveKun/TiPDF" }
     
     s.ios.weak_frameworks = 'UIKit', 'Foundation'
 
