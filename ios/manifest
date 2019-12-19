@@ -15,4 +15,4 @@ name: Ti PDF
 moduleid: net.davidmartins.tipdf
 guid: 14fee4d1-915e-45cc-8893-400191632c75
 platform: iphone
-minsdk: 8.3.0.GA
+minsdk: 7.5.0.GA

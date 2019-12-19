@@ -56,13 +56,6 @@
 
 -(void)openPDF:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self openPDF:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] > 1) {
         NSString *pdfPath = [args objectAtIndex:0];
         
@@ -139,13 +132,6 @@
 
 -(void)setProperties:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self setProperties:args];
-      }, YES);
-      return;
-    }
-    
     NSMutableDictionary *dictionary = [NSMutableDictionary new];
     
     // Time to boring validation
@@ -188,13 +174,6 @@
 
 -(void)addNewPage:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self addNewPage:args];
-      }, YES);
-      return;
-    }
-    
     if(context != NULL) {
         
         // Mark the beginning of a new page.
@@ -236,13 +215,6 @@
 
 -(void)deletePage:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self deletePage:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] > 0) {
         NSNumber *pageToDelete = NULL;
         
@@ -350,13 +322,6 @@
 
 -(void)forEachPage:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self forEachPage:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] > 0 && [[args objectAtIndex:0] isKindOfClass:[KrollCallback class]]) {
         
         // Callback from JS applied to each page
@@ -540,13 +505,6 @@
 
 -(void)setTextColor:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self setTextColor:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 3) {
         NSNumber* red = NULL;
         NSNumber* green = NULL;
@@ -615,13 +573,6 @@
 }
 -(void)setDrawColor:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self setDrawColor:args];
-      }, NO);
-      return;
-    }
-    
     if(args != NULL && [args count] == 3) {
         NSNumber* red = NULL;
         NSNumber* green = NULL;
@@ -690,13 +641,6 @@
 }
 -(void)setFillColor:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self setFillColor:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 3) {
         NSNumber* red = NULL;
         NSNumber* green = NULL;
@@ -817,13 +761,6 @@
 
 -(void)drawText:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-        [self drawText:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] >= 3) {
         
         NSString* textToDraw = NULL;
@@ -962,13 +899,6 @@
 
 -(void)drawLine:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self drawLine:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 4) {
         
         NSNumber* xStart = NULL;
@@ -1025,13 +955,6 @@
 
 -(void)drawRect:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self drawRect:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 4) {
         
         NSNumber* xArg = NULL;
@@ -1088,13 +1011,6 @@
 
 -(void)drawImage:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self drawImage:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && ([args count] == 5 || [args count] == 6) ) {
         NSString* imgPath = NULL;
         NSNumber* xArg = NULL;
@@ -1195,13 +1111,6 @@
 
 -(void)drawEllipse:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self drawEllipse:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 4) {
         
         NSNumber* xArg = NULL;
@@ -1256,13 +1165,6 @@
 
 -(void)addURL:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self addURL:args];
-      }, YES);
-      return;
-    }
-    
     if(args != NULL && [args count] == 5) {
         
         NSString* strUrl = NULL;
@@ -1327,13 +1229,6 @@
 
 -(void)cancelPDF:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self cancelPDF:args];
-      }, YES);
-      return;
-    }
-    
     if(context != NULL) {
         // Close the PDF context and write the contents out.
         UIGraphicsEndPDFContext();
@@ -1382,13 +1277,6 @@
 
 -(void)savePDF:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self savePDF:args];
-      }, YES);
-      return;
-    }
-    
     NSString *pdfName = NULL;
     NSString *pdfFileName = NULL;
     KrollCallback *callback = NULL;
@@ -1482,13 +1370,11 @@
         }
         
         // Fire callback event
-        NSArray *event = @[@{
+        NSArray *obj = @[@{
           @"url" : pdfFileName,
         }];
-
-        [callback call:event thisObject:nil];
         
-        NSLog(@"[INFO] PDF generated from savePDF.");
+        [callback call:obj thisObject:nil];
         
     } else {
          NSLog(@"[ERROR] Callback not found for method savePDF.");
@@ -1498,13 +1384,6 @@
 
 -(void)generateFromJSON:(id)args
 {
-    if (![NSThread isMainThread]) {
-      TiThreadPerformOnMainThread(^{
-          [self generateFromJSON:args];
-      }, YES);
-      return;
-    }
-    
     KrollCallback *callback = NULL;
     NSArray *json = NULL;
     
@@ -1647,8 +1526,6 @@
         }];
         
         [callback call:obj thisObject:nil];
-        
-        NSLog(@"[INFO] PDF generated from generateFromJSON.");
         
     } else {
         NSLog(@"[ERROR] %@", @"Callback from method generateFromJSON not found");
