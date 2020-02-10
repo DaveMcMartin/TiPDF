@@ -641,7 +641,7 @@ Happy Coding!
 Ti PDF is licensed under MIT.
 
 ```
- Copyright (c) 2018-2019 Dave McMartin
+ Copyright (c) 2018-2020 David Martins dos Anjos
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal

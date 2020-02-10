@@ -77,8 +77,7 @@
             }
             
             NSArray *arrayPaths =
-            NSSearchPathForDirectoriesInDomains(
-                                                NSDocumentDirectory,
+            NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                 NSUserDomainMask,
                                                 YES);
             NSString *path = [arrayPaths objectAtIndex:0];
