@@ -56,7 +56,7 @@
 
 -(void)openPDF:(id)args
 {
-    if(args != NULL && [args count] > 1) {
+    if(args != NULL && [args count] > 0) {
         NSString *pdfPath = [args objectAtIndex:0];
         
         if(pdfPath == nil || (pdfPath != nil && [pdfPath isEqualToString:@""])) {

@@ -1,16 +1,20 @@
+# Axway Appcelerator End-of-Support Notice
+
+Axway announced [End-of-Support for the Titanium SDK](https://devblog.axway.com/featured/product-update-changes-to-application-development-services-appcelerator/) effective 1 March 2022. I stopped updating and supporting the TiPDF for iOS Titanium Module as of 1 March 2021. The module is open source, so if you require more time to transition to a different platform, it can still be updated and customized to your needs.
+
 # Ti PDF
 
 Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast rendering and good quality.
 
 # Installing
 
-1. Download this project and open the .zip file in /ios/dist folder, then copy it's content to your project in the correct folder structure. The path will look like the following: `modules/iphone/net.davidmartins.tipdf/2.3.1`
+1. Download this project and open the .zip file in /ios/dist folder, then copy it's content to your project in the correct folder structure. The path will look like the following: `modules/iphone/net.davidmartins.tipdf/2.3.2`
 2. Open Studio, and the `tiapp.xml` file for the project in question.
 3. Switch to the `tiapp.xml` tab.
 4. In the application's `tiapp.xml`, find the `<modules/>` node, and replace it with the new `<modules>` content. If you already have modules, just add a new node for the Ti PDF module. Note that the "version" and "platform" attributes are optional. When "version" is not specified, the latest version of the module will be used (as of Titanium SDK 2.0.0).
 ```xml
 <modules>
-	<module version="2.3.1" platform="iphone">net.davidmartins.tipdf</module>
+	<module version="2.3.2" platform="iphone">net.davidmartins.tipdf</module>
 </modules>
 ```
 5. Use the require function to load the module in the app's code, for example:

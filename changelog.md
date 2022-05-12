@@ -1,4 +1,8 @@
-## Version 2.3.1
+# Version 2.3.2
+
+* Fix for function openPDF, it wasn't working because of wrong validation
+
+## Version 2.3.2
 
 * Some ajustments for Titanium SDK 8.X.X
 

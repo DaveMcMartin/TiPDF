@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "Ti PDF"
-    s.version      = "2.3.1"
+    s.version      = "2.3.2"
     s.summary      = "Titanium module to handle PDF generation/edition on iOS using Quartz 2D for fast rendering and good quality."
   
     s.description  = <<-DESC
